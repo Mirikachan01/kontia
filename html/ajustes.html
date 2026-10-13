@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Ajustes · Panel de clientes</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <script src="../js/config.js"></script>
+  <link rel="stylesheet" href="../css/cuentas.css"><!-- botones, ventanas flotantes, formularios y avisos -->
+  <link rel="stylesheet" href="../css/ajustes.css">
+  <script src="../js/sheets.js" defer></script>
+  <script src="../js/ajustes.js" defer></script>
+   <link rel="icon" type="image/png" href="../logo.png">
+</head>
+<body>
+
+  <!-- Iconos (sprite SVG) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-dashboard" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol>
+      <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+      <symbol id="i-key" viewBox="0 0 24 24"><circle cx="7.5" cy="15.5" r="4.5"/><path d="m10.7 12.3 9.8-9.8M17 6l3 3M14 9.5l2.5 2.5"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+      <symbol id="i-card" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M2 10h20M6 15h4"/></symbol>
+      <symbol id="i-settings" viewBox="0 0 24 24"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></symbol>
+      <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M4 21h16"/></symbol>
+      <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 15V3M7 8l5-5 5 5M4 21h16"/></symbol>
+      <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18M8 6V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6M10 11v6M14 11v6"/></symbol>
+      <symbol id="i-sheet" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></symbol>
+      <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M21 12a9 9 0 0 0-15.5-6.2L3 8M3 3v5h5M3 12a9 9 0 0 0 15.5 6.2L21 16M21 21v-5h-5"/></symbol>
+      <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1.7-1.7"/></symbol>
+    </defs>
+  </svg>
+
+  <div class="app">
+
+    <!-- Menú lateral (en móvil pasa a barra inferior) -->
+    <nav class="sidebar glass" aria-label="Navegación principal">
+      <ul>
+        <li><a href="index1.html" class="nav-link" data-label="Dashboard"><svg class="icon" aria-hidden="true"><use href="#i-dashboard"/></svg><span class="sr-only">Dashboard</span></a></li>
+        <li><a href="clientes.html" class="nav-link" data-label="Clientes"><svg class="icon" aria-hidden="true"><use href="#i-users"/></svg><span class="sr-only">Clientes</span></a></li>
+        <li><a href="cuentas.html" class="nav-link" data-label="Cuentas"><svg class="icon" aria-hidden="true"><use href="#i-key"/></svg><span class="sr-only">Cuentas</span></a></li>
+        <li><a href="vencimientos.html" class="nav-link" data-label="Vencimientos"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg><span class="sr-only">Vencimientos</span></a></li>
+        <li><a href="tarjetas.html" class="nav-link" data-label="Tarjetas"><svg class="icon" aria-hidden="true"><use href="#i-card"/></svg><span class="sr-only">Tarjetas</span></a></li>
+        <li><a href="accesos.html" class="nav-link" data-label="Accesos directos"><svg class="icon" aria-hidden="true"><use href="#i-link"/></svg><span class="sr-only">Accesos directos</span></a></li>
+        <li class="push"><a href="ajustes.html" class="nav-link is-active" aria-current="page" data-label="Ajustes"><svg class="icon" aria-hidden="true"><use href="#i-settings"/></svg><span class="sr-only">Ajustes</span></a></li>
+      </ul>
+    </nav>
+
+    <main class="main">
+
+      <header class="topbar">
+        <div>
+          <h1>Ajustes</h1>
+          <p class="date is-plain">Personaliza el panel a tu manera</p>
+        </div>
+      </header>
+
+      <!-- ===== 1. Tema ===== -->
+      <section class="settings-section" aria-labelledby="s-tema">
+        <div class="section-head">
+          <h2 id="s-tema">Tema del dashboard</h2>
+          <p>Los cambios se ven al instante, pero solo se conservan al pulsar «Guardar tema».</p>
+        </div>
+
+        <div class="card glass">
+          <p class="label">Temas listos</p>
+          <div class="presets" id="presets" role="group" aria-label="Temas listos"></div>
+
+          <p class="label sep">Colores personalizados</p>
+          <div class="color-grid">
+            <label class="color-field" for="t-bg">
+              <span class="cf-text"><span class="cf-name">Color de fondo</span><span class="cf-hint">Base de todo el panel</span></span>
+              <span class="cf-input"><code id="v-bg">#07080d</code><input type="color" id="t-bg" value="#07080d"></span>
+            </label>
+            <label class="color-field" for="t-warm">
+              <span class="cf-text"><span class="cf-name">Brillo principal</span><span class="cf-hint">Resplandor de la esquina superior</span></span>
+              <span class="cf-input"><code id="v-warm">#ff7a45</code><input type="color" id="t-warm" value="#ff7a45"></span>
+            </label>
+            <label class="color-field" for="t-cool">
+              <span class="cf-text"><span class="cf-name">Color secundario</span><span class="cf-hint">Resplandor de la esquina inferior</span></span>
+              <span class="cf-input"><code id="v-cool">#7c5cff</code><input type="color" id="t-cool" value="#7c5cff"></span>
+            </label>
+            <label class="color-field" for="t-accent">
+              <span class="cf-text"><span class="cf-name">Color de acento</span><span class="cf-hint">Botones principales y foco</span></span>
+              <span class="cf-input"><code id="v-accent">#22d391</code><input type="color" id="t-accent" value="#22d391"></span>
+            </label>
+          </div>
+
+          <p class="hint is-warn" id="tema-warn" role="status"></p>
+
+          <div class="sample" aria-hidden="true">
+            <span class="label">Así se ven los botones:</span>
+            <span class="btn btn-primary">Botón principal</span>
+            <span class="btn btn-ghost">Botón secundario</span>
+          </div>
+
+          <div class="btn-row">
+            <button type="button" class="btn btn-ghost" id="tema-reset">Restablecer colores</button>
+            <button type="button" class="btn btn-primary" id="tema-save">Guardar tema</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 2. Vencimientos ===== -->
+      <section class="settings-section" aria-labelledby="s-venc">
+        <div class="section-head">
+          <h2 id="s-venc">Vencimientos</h2>
+          <p>Define cuándo un cliente deja de estar «Activo» y pasa a «Por vencer».</p>
+        </div>
+
+        <div class="card glass">
+          <div class="field">
+            <label for="d-dias">Días para considerar «por vencer»</label>
+            <div class="days-row">
+              <input id="d-dias" type="number" inputmode="numeric" min="1" max="90" step="1" value="7">
+              <div class="pills" id="dias-pills" role="group" aria-label="Valores sugeridos"></div>
+            </div>
+            <p class="hint" id="d-help"></p>
+          </div>
+          <p class="form-error" id="dias-error" role="alert"></p>
+          <p class="note">Este valor se usa en el Dashboard, en Clientes y en Vencimientos.</p>
+          <div class="btn-row">
+            <button type="button" class="btn btn-primary" id="dias-save">Guardar</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 3. Google Sheets ===== -->
+      <section class="settings-section" aria-labelledby="s-sheets">
+        <div class="section-head">
+          <h2 id="s-sheets">Google Sheets</h2>
+          <p>Guarda una copia de tus datos en tu hoja de cálculo y elige qué meses conservar.</p>
+        </div>
+
+        <!-- Conexión -->
+        <div class="card glass">
+          <div class="card-head">
+            <h3 class="card-title">Conexión</h3>
+            <span class="chip" id="sh-status">Sin conectar</span>
+          </div>
+
+          <details class="steps">
+            <summary>Cómo conectar tu hoja (5 pasos)</summary>
+            <ol>
+              <li>Crea una hoja nueva en Google Sheets.</li>
+              <li>Entra a <strong>Extensiones &gt; Apps Script</strong>, borra el código y pega todo el contenido del archivo <code>google-apps-script/Code.gs</code>.</li>
+              <li>Cambia la <code>CLAVE</code> de la primera línea por una clave tuya y guarda.</li>
+              <li>Pulsa <strong>Implementar &gt; Nueva implementación</strong>, elige «Aplicación web», ejecutar como «Yo» y acceso para «Cualquier usuario». Autoriza los permisos.</li>
+              <li>Copia la URL que termina en <code>/exec</code> y pégala aquí con tu clave.</li>
+            </ol>
+            <p class="note">«Cualquier usuario» significa que cualquiera con la URL puede intentar usarla; tu clave es lo que protege los datos. No compartas ni la URL ni la clave.</p>
+            <p class="note">Si ya habías pegado una versión anterior del script, reemplázala por la nueva, conserva tu clave y crea una <strong>nueva versión</strong> en «Administrar implementaciones». Sin ese paso, la URL sigue usando el código viejo.</p>
+          </details>
+
+          <div class="field">
+            <label for="sh-url">URL de la aplicación web</label>
+            <input id="sh-url" type="url" placeholder="https://script.google.com/macros/s/…/exec" autocomplete="off" spellcheck="false">
+          </div>
+          <div class="field">
+            <label for="sh-token">Clave secreta</label>
+            <input id="sh-token" type="password" autocomplete="off" spellcheck="false" placeholder="La misma que pusiste en el script">
+          </div>
+          <label class="check"><input type="checkbox" id="sh-auto" checked><span>Guardar automáticamente en Google Sheets cada vez que cambies datos</span></label>
+          <p class="note" id="sh-auto-state"></p>
+          <p class="note">En la hoja se guardan también las contraseñas de tus clientes y los seriales de las tarjetas, en texto plano. Cuida quién tiene acceso a esa hoja.</p>
+          <p class="form-error" id="sh-error" role="alert"></p>
+          <div class="btn-row">
+            <button type="button" class="btn btn-primary" id="sh-test">Guardar y probar conexión</button>
+          </div>
+        </div>
+
+        <!-- Sincronizar -->
+        <div class="card glass">
+          <h3 class="card-title">Sincronizar</h3>
+          <p class="note">Con el guardado automático activo no necesitas subir a mano; estos botones sirven para el primer envío, para un equipo nuevo o para forzar una copia.</p>
+
+          <div class="data-row">
+            <div>
+              <p class="data-title">Subir a Google Sheets</p>
+              <p class="data-desc">Reemplaza el contenido de la hoja con los datos de este dispositivo (clientes, cuentas, tarjetas y accesos directos).</p>
+            </div>
+            <button type="button" class="btn btn-ghost" id="sh-push"><svg class="icon" aria-hidden="true"><use href="#i-upload"/></svg>Subir</button>
+          </div>
+
+          <div class="data-row">
+            <div>
+              <p class="data-title">Descargar desde Google Sheets</p>
+              <p class="data-desc">Reemplaza los datos de este dispositivo con los de la hoja. Útil en un equipo nuevo.</p>
+            </div>
+            <button type="button" class="btn btn-ghost" id="sh-pull"><svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>Descargar</button>
+          </div>
+
+          <p class="note" id="sh-last"></p>
+        </div>
+
+        <!-- Datos por mes -->
+        <div class="card glass">
+          <div class="card-head">
+            <h3 class="card-title">Administrar datos por mes</h3>
+            <button type="button" class="btn btn-ghost" id="mes-load"><svg class="icon" aria-hidden="true"><use href="#i-refresh"/></svg>Cargar meses</button>
+          </div>
+          <p class="note">Muestra los clientes guardados en la hoja agrupados por el mes de su fecha de inicio, desde el primer mes con clientes hasta hoy. Elige los meses que quieres borrar de la hoja.</p>
+
+          <div class="months-toolbar">
+            <button type="button" class="pill" id="mes-all">Seleccionar todos</button>
+            <button type="button" class="pill" id="mes-none">Ninguno</button>
+            <span class="months-count" id="mes-count" role="status"></span>
+          </div>
+
+          <ul class="months" id="meses-lista"></ul>
+
+          <div class="btn-row">
+            <button type="button" class="btn btn-danger-ghost" id="mes-delete" disabled><svg class="icon" aria-hidden="true"><use href="#i-trash"/></svg>Borrar meses seleccionados</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 4. Otros ajustes ===== -->
+      <section class="settings-section" aria-labelledby="s-otros">
+        <div class="section-head">
+          <h2 id="s-otros">Otros ajustes</h2>
+          <p>Moneda, mensajes de WhatsApp y respaldo de tus datos.</p>
+        </div>
+
+        <!-- Moneda y contacto -->
+        <div class="card glass">
+          <h3 class="card-title">Moneda y contacto</h3>
+          <div class="two-cols">
+            <div class="field">
+              <label for="g-moneda">Símbolo de moneda</label>
+              <input id="g-moneda" type="text" maxlength="6" autocomplete="off" placeholder="Bs">
+            </div>
+            <div class="field">
+              <label for="g-pais">Código de país para WhatsApp</label>
+              <input id="g-pais" type="text" inputmode="numeric" maxlength="4" autocomplete="off" placeholder="591">
+            </div>
+          </div>
+          <p class="note">El código de país se agrega a los números de 8 dígitos al abrir WhatsApp.</p>
+          <p class="form-error" id="general-error" role="alert"></p>
+          <div class="btn-row">
+            <button type="button" class="btn btn-primary" id="general-save">Guardar</button>
+          </div>
+        </div>
+
+        <!-- Mensajes de WhatsApp -->
+        <div class="card glass">
+          <h3 class="card-title">Mensajes de WhatsApp</h3>
+          <p class="note">Se usan al pulsar «Contactar». Toca una etiqueta para insertarla en el mensaje.</p>
+
+          <div class="msg-block" data-estado="porvencer">
+            <label for="m-porvencer">Cliente por vencer</label>
+            <div class="tokens" role="group" aria-label="Insertar etiqueta">
+              <button type="button" class="token" data-token="{nombre}">{nombre}</button>
+              <button type="button" class="token" data-token="{dias}">{dias}</button>
+              <button type="button" class="token" data-token="{fecha}">{fecha}</button>
+            </div>
+            <textarea id="m-porvencer" rows="3" maxlength="500"></textarea>
+            <p class="bubble" data-preview="porvencer"></p>
+          </div>
+
+          <div class="msg-block" data-estado="vencido">
+            <label for="m-vencido">Cliente vencido</label>
+            <div class="tokens" role="group" aria-label="Insertar etiqueta">
+              <button type="button" class="token" data-token="{nombre}">{nombre}</button>
+              <button type="button" class="token" data-token="{dias}">{dias}</button>
+              <button type="button" class="token" data-token="{fecha}">{fecha}</button>
+            </div>
+            <textarea id="m-vencido" rows="3" maxlength="500"></textarea>
+            <p class="bubble" data-preview="vencido"></p>
+          </div>
+
+          <div class="msg-block" data-estado="activo">
+            <label for="m-activo">Cliente activo</label>
+            <div class="tokens" role="group" aria-label="Insertar etiqueta">
+              <button type="button" class="token" data-token="{nombre}">{nombre}</button>
+              <button type="button" class="token" data-token="{dias}">{dias}</button>
+              <button type="button" class="token" data-token="{fecha}">{fecha}</button>
+            </div>
+            <textarea id="m-activo" rows="3" maxlength="500"></textarea>
+            <p class="bubble" data-preview="activo"></p>
+          </div>
+
+          <p class="note"><strong>{nombre}</strong> es el primer nombre del cliente, <strong>{fecha}</strong> su fecha de fin y <strong>{dias}</strong> el tiempo que falta (por ejemplo «en 3 días» o «hoy»).</p>
+          <p class="form-error" id="msg-error" role="alert"></p>
+          <div class="btn-row">
+            <button type="button" class="btn btn-ghost" id="msg-reset">Restablecer mensajes</button>
+            <button type="button" class="btn btn-primary" id="msg-save">Guardar mensajes</button>
+          </div>
+        </div>
+
+        <!-- Respaldo y datos -->
+        <div class="card glass">
+          <h3 class="card-title">Respaldo y datos</h3>
+          <p class="note">Tus datos viven en este navegador. Además del archivo de respaldo, puedes guardarlos en Google Sheets (sección de arriba).</p>
+
+          <div class="data-row">
+            <div>
+              <p class="data-title">Exportar respaldo</p>
+              <p class="data-desc">Descarga un archivo con clientes, cuentas, tarjetas, accesos directos y ajustes. Incluye contraseñas y seriales en texto plano: guárdalo en un lugar seguro.</p>
+            </div>
+            <button type="button" class="btn btn-ghost" id="data-export"><svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>Exportar</button>
+          </div>
+
+          <div class="data-row">
+            <div>
+              <p class="data-title">Importar respaldo</p>
+              <p class="data-desc">Carga un archivo exportado antes. Reemplaza los datos actuales.</p>
+            </div>
+            <button type="button" class="btn btn-ghost" id="data-import"><svg class="icon" aria-hidden="true"><use href="#i-upload"/></svg>Importar</button>
+            <input type="file" id="data-file" accept=".json,application/json" hidden>
+          </div>
+
+          <div class="data-row">
+            <div>
+              <p class="data-title">Borrar datos del negocio</p>
+              <p class="data-desc">Elimina clientes, cuentas, tarjetas y accesos directos. Tus ajustes se conservan.</p>
+            </div>
+            <button type="button" class="btn btn-danger-ghost" id="data-wipe"><svg class="icon" aria-hidden="true"><use href="#i-trash"/></svg>Borrar</button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ===== Ventana: borrar meses de la hoja ===== -->
+  <dialog class="modal" id="dlg-del-months" aria-labelledby="dm-title">
+    <div class="modal-body">
+      <div class="modal-head">
+        <h2 id="dm-title">¿Borrar meses de la hoja?</h2>
+        <button type="button" class="icon-btn" data-close aria-label="Cerrar"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg></button>
+      </div>
+
+      <p class="modal-text" id="dm-summary"></p>
+      <ul class="dm-list" id="dm-list"></ul>
+      <p class="dm-warn" id="dm-warn" hidden></p>
+
+      <label class="check"><input type="checkbox" id="dm-backup" checked><span>Descargar una copia de la hoja antes de borrar</span></label>
+      <label class="check"><input type="checkbox" id="dm-local" checked><span>También borrarlos de este dispositivo (si no, volverían al subir datos)</span></label>
+
+      <div class="field">
+        <label for="dm-word">Escribe <strong>BORRAR</strong> para confirmar</label>
+        <input id="dm-word" type="text" autocomplete="off" spellcheck="false">
+      </div>
+      <p class="form-error" id="dm-error" role="alert"></p>
+
+      <div class="modal-actions">
+        <button type="button" class="btn btn-ghost" data-close>Cancelar</button>
+        <button type="button" class="btn btn-danger" id="dm-confirm" disabled>Borrar meses</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- ===== Ventana: confirmar ===== -->
+  <dialog class="modal" id="dlg-confirm" aria-labelledby="confirm-title" aria-describedby="confirm-msg">
+    <div class="modal-body">
+      <div class="modal-head">
+        <h2 id="confirm-title">¿Continuar?</h2>
+      </div>
+      <p class="modal-text" id="confirm-msg"></p>
+      <form method="dialog" class="modal-actions">
+        <button type="submit" class="btn btn-ghost" value="cancel" autofocus>Cancelar</button>
+        <button type="submit" class="btn btn-danger" value="ok" id="confirm-ok">Confirmar</button>
+      </form>
+    </div>
+  </dialog>
+
+  <div class="toasts" id="toasts" aria-live="polite"></div>
+
+</body>
+</html>

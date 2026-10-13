@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Vencimientos · Panel de clientes</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/clientes.css"><!-- buscador, filtros y etiquetas de estado -->
+  <link rel="stylesheet" href="../css/vencimientos.css">
+  <script src="../js/vencimientos.js" defer></script>
+  <script src="../js/config.js"></script>
+   <link rel="icon" type="image/png" href="../logo.png">
+</head>
+<body>
+
+  <!-- Iconos (sprite SVG) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-dashboard" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol>
+      <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+      <symbol id="i-key" viewBox="0 0 24 24"><circle cx="7.5" cy="15.5" r="4.5"/><path d="m10.7 12.3 9.8-9.8M17 6l3 3M14 9.5l2.5 2.5"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+      <symbol id="i-card" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M2 10h20M6 15h4"/></symbol>
+      <symbol id="i-settings" viewBox="0 0 24 24"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></symbol>
+      <symbol id="i-chat" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></symbol>
+      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></symbol>
+    </defs>
+  </svg>
+
+  <div class="app">
+
+    <!-- Menú lateral (en móvil pasa a barra inferior) -->
+    <nav class="sidebar glass" aria-label="Navegación principal">
+      <ul>
+        <li><a href="../html/index1.html" class="nav-link" data-label="Dashboard"><svg class="icon" aria-hidden="true"><use href="#i-dashboard"/></svg><span class="sr-only">Dashboard</span></a></li>
+        <li><a href="../html/clientes.html" class="nav-link" data-label="Clientes"><svg class="icon" aria-hidden="true"><use href="#i-users"/></svg><span class="sr-only">Clientes</span></a></li>
+        <li><a href="../html/cuentas.html" class="nav-link" data-label="Cuentas"><svg class="icon" aria-hidden="true"><use href="#i-key"/></svg><span class="sr-only">Cuentas</span></a></li>
+        <li><a href="../html/vencimientos.html" class="nav-link is-active" aria-current="page" data-label="Vencimientos"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg><span class="sr-only">Vencimientos</span></a></li>
+        <li><a href="../html/tarjetas.html" class="nav-link" data-label="Tarjetas"><svg class="icon" aria-hidden="true"><use href="#i-card"/></svg><span class="sr-only">Tarjetas</span></a></li>
+        <li><a href="../html/accesos.html" class="nav-link" data-label="Accesos directos"><svg class="icon" aria-hidden="true"><use href="#i-link"/></svg><span class="sr-only">Accesos directos</span></a></li>
+        <li class="push"><a href="../html/ajustes.html" class="nav-link" data-label="Ajustes"><svg class="icon" aria-hidden="true"><use href="#i-settings"/></svg><span class="sr-only">Ajustes</span></a></li>
+      
+      </ul>
+    </nav>
+
+    <main class="main">
+
+      <header class="topbar">
+        <div>
+          <h1>Vencimientos</h1>
+          <p class="date is-plain">Fechas de inicio y fin de cada cliente</p>
+        </div>
+      </header>
+
+      <section class="card glass" aria-labelledby="lista-title">
+        <div class="card-head">
+          <h2 id="lista-title">Todos los clientes</h2>
+          <span class="chip" id="count-clientes">0 clientes</span>
+        </div>
+
+        <div class="toolbar">
+          <div class="search">
+            <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
+            <label for="buscar" class="sr-only">Buscar por nombre o número</label>
+            <input id="buscar" type="search" placeholder="Buscar por nombre o número" autocomplete="off">
+          </div>
+          <div class="filters" role="group" aria-label="Filtrar por estado">
+            <button type="button" class="filter" data-filtro="todos" aria-pressed="true">Todos <span class="count" id="cnt-todos">0</span></button>
+            <button type="button" class="filter" data-filtro="activo" aria-pressed="false">Activos <span class="count" id="cnt-activo">0</span></button>
+            <button type="button" class="filter" data-filtro="porvencer" aria-pressed="false">Por vencer <span class="count" id="cnt-porvencer">0</span></button>
+            <button type="button" class="filter" data-filtro="vencido" aria-pressed="false">Vencidos <span class="count" id="cnt-vencido">0</span></button>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table class="vtable">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Número</th>
+                <th scope="col">Fecha de inicio</th>
+                <th scope="col">Fecha de fin</th>
+                <th scope="col">Estado</th>
+                <th scope="col"><span class="sr-only">Acción</span></th>
+              </tr>
+            </thead>
+            <tbody id="tabla-vencimientos"></tbody>
+          </table>
+        </div>
+
+        <p class="empty" id="vacio" hidden></p>
+      </section>
+
+    </main>
+  </div>
+
+</body>
+</html>

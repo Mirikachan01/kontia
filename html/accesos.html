@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Accesos directos · Panel de clientes</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <script src="../js/config.js"></script>
+  <script src="../js/sheets.js" defer></script>
+  <link rel="stylesheet" href="../css/cuentas.css"><!-- botones, ventanas flotantes, formularios y avisos -->
+  <link rel="stylesheet" href="../css/clientes.css"><!-- buscador -->
+  <link rel="stylesheet" href="../css/accesos.css">
+  <script src="../js/accesos.js" defer></script>
+   <link rel="icon" type="image/png" href="../logo.png">
+</head>
+<body>
+
+  <!-- Iconos (sprite SVG) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-dashboard" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol>
+      <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+      <symbol id="i-key" viewBox="0 0 24 24"><circle cx="7.5" cy="15.5" r="4.5"/><path d="m10.7 12.3 9.8-9.8M17 6l3 3M14 9.5l2.5 2.5"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+      <symbol id="i-card" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M2 10h20M6 15h4"/></symbol>
+      <symbol id="i-settings" viewBox="0 0 24 24"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></symbol>
+      <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1.7-1.7"/></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+      <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+      <symbol id="i-tag" viewBox="0 0 24 24"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8z"/><circle cx="7" cy="7" r="1.5"/></symbol>
+      <symbol id="i-list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></symbol>
+      <symbol id="i-pencil" viewBox="0 0 24 24"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></symbol>
+      <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18M8 6V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6M10 11v6M14 11v6"/></symbol>
+      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></symbol>
+      <symbol id="i-external" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></symbol>
+    </defs>
+  </svg>
+
+  <div class="app">
+
+    <!-- Menú lateral (en móvil pasa a barra inferior) -->
+    <nav class="sidebar glass" aria-label="Navegación principal">
+      <ul>
+        <li><a href="index1.html" class="nav-link" data-label="Dashboard"><svg class="icon" aria-hidden="true"><use href="#i-dashboard"/></svg><span class="sr-only">Dashboard</span></a></li>
+        <li><a href="clientes.html" class="nav-link" data-label="Clientes"><svg class="icon" aria-hidden="true"><use href="#i-users"/></svg><span class="sr-only">Clientes</span></a></li>
+        <li><a href="cuentas.html" class="nav-link" data-label="Cuentas"><svg class="icon" aria-hidden="true"><use href="#i-key"/></svg><span class="sr-only">Cuentas</span></a></li>
+        <li><a href="vencimientos.html" class="nav-link" data-label="Vencimientos"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg><span class="sr-only">Vencimientos</span></a></li>
+        <li><a href="tarjetas.html" class="nav-link" data-label="Tarjetas"><svg class="icon" aria-hidden="true"><use href="#i-card"/></svg><span class="sr-only">Tarjetas</span></a></li>
+        <li><a href="accesos.html" class="nav-link is-active" aria-current="page" data-label="Accesos directos"><svg class="icon" aria-hidden="true"><use href="#i-link"/></svg><span class="sr-only">Accesos directos</span></a></li>
+        <li class="push"><a href="ajustes.html" class="nav-link" data-label="Ajustes"><svg class="icon" aria-hidden="true"><use href="#i-settings"/></svg><span class="sr-only">Ajustes</span></a></li>
+      </ul>
+    </nav>
+
+    <main class="main">
+
+      <header class="topbar">
+        <div>
+          <h1>Accesos directos</h1>
+          <p class="date is-plain">Tus páginas de internet a un clic, ordenadas por categoría</p>
+        </div>
+        <div class="actions">
+          <button type="button" class="btn btn-ghost" id="btn-add-cat">
+            <svg class="icon" aria-hidden="true"><use href="#i-tag"/></svg>
+            Añadir categoría
+          </button>
+          <button type="button" class="btn btn-ghost" id="btn-manage-cat">
+            <svg class="icon" aria-hidden="true"><use href="#i-list"/></svg>
+            Administrar categorías
+          </button>
+          <button type="button" class="btn btn-primary" id="btn-add-link">
+            <svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg>
+            Añadir acceso directo
+          </button>
+        </div>
+      </header>
+
+      <section class="card glass" aria-labelledby="lista-title">
+        <div class="card-head">
+          <h2 id="lista-title">Mis accesos</h2>
+          <span class="chip" id="count-accesos">0 accesos</span>
+        </div>
+
+        <div class="toolbar">
+          <div class="search">
+            <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
+            <label for="buscar" class="sr-only">Buscar por nombre o dirección</label>
+            <input id="buscar" type="search" placeholder="Buscar por nombre o dirección" autocomplete="off">
+          </div>
+          <div class="select-wrap">
+            <label for="filtro-cat" class="sr-only">Filtrar por categoría</label>
+            <select id="filtro-cat" class="toolbar-select">
+              <option value="todas">Todas las categorías</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="grupos"></div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ===== Ventana: añadir categoría ===== -->
+  <dialog class="modal" id="dlg-cat" aria-labelledby="dlg-cat-title">
+    <div class="modal-body">
+      <div class="modal-head">
+        <h2 id="dlg-cat-title">Añadir categoría</h2>
+        <button type="button" class="icon-btn" data-close aria-label="Cerrar"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg></button>
+      </div>
+      <form id="form-cat" novalidate>
+        <div class="field">
+          <label for="cat-nombre">Nombre de la categoría</label>
+          <input id="cat-nombre" type="text" maxlength="40" autocomplete="off" placeholder="Ej: Banca" required>
+        </div>
+        <p class="form-error" id="cat-error" role="alert"></p>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-ghost" data-close>Cancelar</button>
+          <button type="submit" class="btn btn-primary">Crear categoría</button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
+  <!-- ===== Ventana: añadir / editar acceso directo ===== -->
+  <dialog class="modal" id="dlg-link" aria-labelledby="dlg-link-title">
+    <div class="modal-body">
+      <div class="modal-head">
+        <h2 id="dlg-link-title">Añadir acceso directo</h2>
+        <button type="button" class="icon-btn" data-close aria-label="Cerrar"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg></button>
+      </div>
+      <form id="form-link" novalidate>
+        <div class="field">
+          <label for="l-url">Dirección de la página</label>
+          <input id="l-url" type="text" inputmode="url" maxlength="2000" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Pega aquí la URL, por ejemplo https://www.ejemplo.com" required>
+        </div>
+        <div class="field">
+          <label for="l-nombre">Nombre (opcional)</label>
+          <input id="l-nombre" type="text" maxlength="50" autocomplete="off" placeholder="Se usa el nombre del sitio si lo dejas vacío">
+        </div>
+        <div class="field">
+          <label for="l-cat">Categoría</label>
+          <select id="l-cat"></select>
+        </div>
+        <p class="form-error" id="link-error" role="alert"></p>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-ghost" data-close>Cancelar</button>
+          <button type="submit" class="btn btn-primary" id="link-submit">Guardar acceso</button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
+  <!-- ===== Ventana: administrar categorías ===== -->
+  <dialog class="modal" id="dlg-manage" aria-labelledby="dlg-manage-title">
+    <div class="modal-body">
+      <div class="modal-head">
+        <h2 id="dlg-manage-title">Administrar categorías</h2>
+        <button type="button" class="icon-btn" data-close aria-label="Cerrar"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg></button>
+      </div>
+      <ul class="list" id="lista-categorias"></ul>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-ghost" data-close>Cerrar</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- ===== Ventana: confirmar eliminación ===== -->
+  <dialog class="modal" id="dlg-confirm" aria-labelledby="confirm-title" aria-describedby="confirm-msg">
+    <div class="modal-body">
+      <div class="modal-head">
+        <h2 id="confirm-title">¿Borrar?</h2>
+      </div>
+      <p class="modal-text" id="confirm-msg"></p>
+      <form method="dialog" class="modal-actions">
+        <button type="submit" class="btn btn-ghost" value="cancel" autofocus>Cancelar</button>
+        <button type="submit" class="btn btn-danger" value="ok" id="confirm-ok">Borrar</button>
+      </form>
+    </div>
+  </dialog>
+
+  <div class="toasts" id="toasts" aria-live="polite"></div>
+
+</body>
+</html>

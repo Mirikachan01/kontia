@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Tarjetas · Panel de clientes</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/cuentas.css"><!-- botones, ventanas flotantes, formularios y avisos -->
+  <link rel="stylesheet" href="../css/clientes.css"><!-- buscador y formulario en dos columnas -->
+  <link rel="stylesheet" href="../css/tarjetas.css">
+  <script src="../js/tarjetas.js" defer></script>
+  <script src="../js/config.js"></script>
+   <link rel="icon" type="image/png" href="../logo.png">
+</head>
+<body>
+
+  <!-- Iconos (sprite SVG) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-dashboard" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol>
+      <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+      <symbol id="i-key" viewBox="0 0 24 24"><circle cx="7.5" cy="15.5" r="4.5"/><path d="m10.7 12.3 9.8-9.8M17 6l3 3M14 9.5l2.5 2.5"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+      <symbol id="i-card" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M2 10h20M6 15h4"/></symbol>
+      <symbol id="i-settings" viewBox="0 0 24 24"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+      <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+      <symbol id="i-bank" viewBox="0 0 24 24"><path d="M3 21h18M5 21V10M9 21V10M15 21V10M19 21V10M2 10l10-6 10 6z"/></symbol>
+      <symbol id="i-pencil" viewBox="0 0 24 24"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></symbol>
+      <symbol id="i-chat" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></symbol>
+      <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18M8 6V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6M10 11v6M14 11v6"/></symbol>
+      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></symbol>
+      <symbol id="i-contactless" viewBox="0 0 24 24"><path d="M8 9a5 5 0 0 1 0 6M12 7a9 9 0 0 1 0 10M16 5a13 13 0 0 1 0 14"/></symbol>
+    </defs>
+  </svg>
+
+  <div class="app">
+
+    <!-- Menú lateral (en móvil pasa a barra inferior) -->
+    <nav class="sidebar glass" aria-label="Navegación principal">
+      <ul>
+        <li><a href="index1.html" class="nav-link" data-label="Dashboard"><svg class="icon" aria-hidden="true"><use href="#i-dashboard"/></svg><span class="sr-only">Dashboard</span></a></li>
+        <li><a href="clientes.html" class="nav-link" data-label="Clientes"><svg class="icon" aria-hidden="true"><use href="#i-users"/></svg><span class="sr-only">Clientes</span></a></li>
+        <li><a href="cuentas.html" class="nav-link" data-label="Cuentas"><svg class="icon" aria-hidden="true"><use href="#i-key"/></svg><span class="sr-only">Cuentas</span></a></li>
+        <li><a href="vencimientos.html" class="nav-link" data-label="Vencimientos"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg><span class="sr-only">Vencimientos</span></a></li>
+        <li><a href="tarjetas.html" class="nav-link is-active" aria-current="page" data-label="Tarjetas"><svg class="icon" aria-hidden="true"><use href="#i-card"/></svg><span class="sr-only">Tarjetas</span></a></li>
+        <li><a href="accesos.html" class="nav-link" data-label="Accesos directos"><svg class="icon" aria-hidden="true"><use href="#i-link"/></svg><span class="sr-only">Accesos directos</span></a></li>
+        
+        <li class="push"><a href="ajustes.html" class="nav-link" data-label="Ajustes"><svg class="icon" aria-hidden="true"><use href="#i-settings"/></svg><span class="sr-only">Ajustes</span></a></li>
+      </ul>
+    </nav>
+
+    <main class="main">
+
+      <header class="topbar">
+        <div>
+          <h1>Tarjetas</h1>
+          <p class="date is-plain">Administra las tarjetas y a quién pertenecen</p>
+        </div>
+        <div class="actions">
+          <button type="button" class="btn btn-ghost" id="btn-add-bank">
+            <svg class="icon" aria-hidden="true"><use href="#i-bank"/></svg>
+            Añadir banco
+          </button>
+          <button type="button" class="btn btn-primary" id="btn-add-card">
+            <svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg>
+            Añadir tarjeta
+          </button>
+        </div>
+      </header>
+
+      <section class="card glass" aria-labelledby="lista-title">
+        <div class="card-head">
+          <h2 id="lista-title">Mis tarjetas</h2>
+          <span class="chip" id="count-tarjetas">0 tarjetas</span>
+        </div>
+
+        <div class="toolbar">
+          <div class="search">
+            <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
+            <label for="buscar" class="sr-only">Buscar por titular</label>
+            <input id="buscar" type="search" placeholder="Buscar por titular" autocomplete="off">
+          </div>
+          <div class="select-wrap">
+            <label for="filtro-banco" class="sr-only">Filtrar por banco</label>
+            <select id="filtro-banco" class="toolbar-select">
+              <option value="todos">Todos los bancos</option>
+            </select>
+          </div>
+        </div>
+
+        <ul class="cards" id="lista-tarjetas"></ul>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ===== Ventana: añadir banco ===== -->
+  <dialog class="modal" id="dlg-bank" aria-labelledby="dlg-bank-title">
+    <div class="modal-body">
+      <div class="modal-head">
+        <h2 id="dlg-bank-title">Añadir banco</h2>
+        <button type="button" class="icon-btn" data-close aria-label="Cerrar"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg></button>
+      </div>
+      <form id="form-bank" novalidate>
+        <div class="field">
+          <label for="b-nombre">Nombre del banco</label>
+          <input id="b-nombre" type="text" maxlength="40" autocomplete="off" placeholder="Ej: Banco Unión" required>
+        </div>
+        <p class="form-error" id="bank-error" role="alert"></p>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-ghost" data-close>Cancelar</button>
+          <button type="submit" class="btn btn-primary">Añadir banco</button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
+  <!-- ===== Ventana: añadir / editar tarjeta ===== -->
+  <dialog class="modal modal-wide" id="dlg-card" aria-labelledby="dlg-card-title">
+    <div class="modal-body">
+      <div class="modal-head">
+        <h2 id="dlg-card-title">Añadir tarjeta</h2>
+        <button type="button" class="icon-btn" data-close aria-label="Cerrar"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg></button>
+      </div>
+
+      <form id="form-card" novalidate>
+        <div class="notice" id="c-empty" hidden>
+          Aún no tienes bancos. Añade uno primero para poder registrar tarjetas.
+          <br><button type="button" class="link" id="c-go-bank">Añadir un banco</button>
+        </div>
+
+        <div id="c-fields">
+          <div class="preview" id="c-preview" aria-label="Vista previa de la tarjeta"></div>
+
+          <div class="form-grid">
+            <div class="field">
+              <label for="c-banco">Banco</label>
+              <select id="c-banco" required></select>
+            </div>
+            <div class="field">
+              <label for="c-titular">Nombre del titular</label>
+              <input id="c-titular" type="text" maxlength="60" autocomplete="off" placeholder="Ej: Carlos Rojas" required>
+            </div>
+
+            <div class="field">
+              <label for="c-serial">Serial</label>
+              <input id="c-serial" type="text" inputmode="numeric" maxlength="30" autocomplete="off" spellcheck="false" placeholder="Ej: 4111 1111 1111 1111" required>
+            </div>
+            <div class="field">
+              <label for="c-telefono">Número del titular</label>
+              <input id="c-telefono" type="tel" inputmode="tel" maxlength="20" autocomplete="off" placeholder="Ej: 71234567" required>
+            </div>
+
+            <div class="field span-2">
+              <label for="c-color">Color de la tarjeta</label>
+              <div class="color-row">
+                <div class="swatches" id="c-swatches" role="group" aria-label="Colores sugeridos"></div>
+                <label class="color-custom" title="Elegir otro color">
+                  <input id="c-color" type="color" value="#2b59ff">
+                  <span>Personalizado</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="form-error" id="card-error" role="alert"></p>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-ghost" data-close>Cancelar</button>
+          <button type="submit" class="btn btn-primary" id="card-submit">Guardar tarjeta</button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
+  <!-- ===== Ventana: confirmar eliminación ===== -->
+  <dialog class="modal" id="dlg-confirm" aria-labelledby="confirm-title" aria-describedby="confirm-msg">
+    <div class="modal-body">
+      <div class="modal-head">
+        <h2 id="confirm-title">¿Borrar?</h2>
+      </div>
+      <p class="modal-text" id="confirm-msg"></p>
+      <form method="dialog" class="modal-actions">
+        <button type="submit" class="btn btn-ghost" value="cancel" autofocus>Cancelar</button>
+        <button type="submit" class="btn btn-danger" value="ok" id="confirm-ok">Borrar</button>
+      </form>
+    </div>
+  </dialog>
+
+  <div class="toasts" id="toasts" aria-live="polite"></div>
+
+</body>
+</html>

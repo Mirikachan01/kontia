@@ -1,0 +1,334 @@
+/* clientes.css · se carga después de styles.css y cuentas.css */
+
+/* ---------- Contadores por estado ---------- */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
+}
+
+.stat:hover { background: var(--glass-hover); }
+
+.stat[aria-pressed="true"] {
+  border-color: color-mix(in srgb, var(--tone) 60%, transparent);
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.35),
+    0 0 0 1px color-mix(in srgb, var(--tone) 40%, transparent),
+    inset 0 0 40px color-mix(in srgb, var(--tone) 10%, transparent);
+}
+
+.stat .label { display: inline-flex; align-items: center; gap: 8px; }
+
+.stat-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--tone);
+  box-shadow: 0 0 10px var(--tone);
+}
+
+/* ---------- Buscador y filtros ---------- */
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.search {
+  position: relative;
+  flex: 1 1 260px;
+}
+
+.search .icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  width: 18px;
+  height: 18px;
+  transform: translateY(-50%);
+  color: var(--faint);
+  pointer-events: none;
+}
+
+.search input {
+  width: 100%;
+  padding: 12px 14px 12px 42px;
+  font: inherit;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.search input::placeholder { color: var(--faint); }
+
+.search input:focus {
+  outline: none;
+  border-color: color-mix(in srgb, var(--accent) 60%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 15%, transparent);
+}
+
+.filters { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 14px;
+  font: inherit;
+  font-size: 13.5px;
+  color: var(--muted);
+  background: var(--glass);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.filter:hover { background: var(--glass-hover); color: var(--text); }
+
+.filter[aria-pressed="true"] {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+.filter .count {
+  min-width: 22px;
+  padding: 1px 7px;
+  font-size: 12px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  color: var(--faint);
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 999px;
+}
+
+/* ---------- Lista de clientes ---------- */
+.clients { display: grid; gap: 8px; }
+
+.client {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.client:hover {
+  background: var(--glass-hover);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+.client-name {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 10px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.client-name .name-text {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.client-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 16px;
+  margin-top: 4px;
+  font-size: 12.5px;
+  color: var(--faint);
+}
+
+.client-meta .cid { color: var(--muted); font-variant-numeric: tabular-nums; }
+
+.client-side { text-align: right; white-space: nowrap; }
+.client-venc { font-size: 13px; }
+.client-date { font-size: 12px; color: var(--faint); }
+.client-price { margin-top: 2px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.client-profit { font-size: 12px; color: var(--ok); }
+.client-profit.is-neg { color: var(--danger); }
+
+.client.is-vencido .client-venc { color: var(--danger); }
+.client.is-porvencer .client-venc { color: var(--warn); }
+.client.is-activo .client-venc { color: var(--muted); }
+
+.client-actions { display: flex; gap: 2px; }
+
+/* ---------- Etiqueta de estado ---------- */
+.badge {
+  padding: 2px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 999px;
+  color: var(--tone);
+  background: color-mix(in srgb, var(--tone) 14%, transparent);
+  border: 1px solid color-mix(in srgb, var(--tone) 35%, transparent);
+}
+
+.badge.is-activo { --tone: var(--ok); }
+.badge.is-porvencer { --tone: var(--warn); }
+.badge.is-vencido { --tone: var(--danger); }
+
+/* El enlace de contactar usa el mismo estilo que los botones de icono */
+a.icon-btn:hover { color: var(--ok); background: rgba(34, 211, 145, 0.12); }
+
+/* ---------- Formulario ---------- */
+.modal-wide { width: min(640px, calc(100vw - 28px)); }
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 14px;
+}
+
+.form-grid .span-2 { grid-column: 1 / -1; }
+
+.field input[readonly] { opacity: 0.65; cursor: default; }
+
+.input-group { position: relative; }
+.input-group input { padding-right: 48px; }
+.input-group .icon-btn {
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.hint { min-height: 18px; font-size: 12.5px; color: var(--faint); }
+.hint strong { color: var(--ok); font-weight: 600; }
+.hint strong.is-neg { color: var(--danger); }
+.form-grid > .hint { margin: -4px 0 6px; }
+
+/* ==========================================================
+   Responsivo
+   ========================================================== */
+@media (max-width: 900px) {
+  .client {
+    grid-template-columns: auto minmax(0, 1fr);
+    row-gap: 12px;
+  }
+
+  .client-side {
+    grid-column: 2;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 4px 14px;
+    text-align: left;
+  }
+
+  .client-price { margin-top: 0; }
+
+  .client-actions {
+    grid-column: 1 / -1;
+    justify-content: space-between;
+    padding-top: 10px;
+    border-top: 1px solid var(--line);
+  }
+}
+
+@media (max-width: 760px) {
+  .stats { grid-template-columns: 1fr; gap: 12px; }
+  .filters { width: 100%; }
+}
+
+@media (max-width: 560px) {
+  .form-grid { grid-template-columns: 1fr; }
+}
+
+/* ---------- Cuentas asignadas ---------- */
+.client-accounts { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+
+.acct-chip {
+  padding: 2px 10px;
+  font-size: 12px;
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.acct-chip.is-more { color: var(--faint); }
+
+/* ---------- Selector de cuentas en el formulario ---------- */
+.cuentas-pick {
+  display: grid;
+  gap: 10px;
+  max-height: 210px;
+  overflow-y: auto;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.pick-empty { font-size: 13.5px; color: var(--muted); }
+
+.pick-search {
+  width: 100%;
+  padding: 9px 12px;
+  font: inherit;
+  font-size: 13.5px;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+.pick-search:focus { outline: none; border-color: color-mix(in srgb, var(--accent) 60%, transparent); }
+
+.pick-group { display: grid; gap: 4px; }
+.pick-group[hidden], .pick-item[hidden] { display: none; }
+.pick-cat { font-size: 12px; font-weight: 600; color: var(--faint); }
+
+.pick-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 8px;
+  font-size: 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.pick-item:hover { background: var(--glass-hover); }
+/* Los checkbox están dentro de .field: se anulan los estilos de los campos de texto */
+.pick-item input {
+  width: 17px;
+  height: 17px;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  accent-color: var(--accent);
+  flex: none;
+}
